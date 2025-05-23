@@ -56,8 +56,7 @@ To use this project, you need to obtain API keys for the relevant large language
 # 初始化conda
 eval "$(conda shell.bash hook)"
 conda activate jailbreak
-# 这是最新的项目路径，之前的用户路径空间太小了。放到数据盘上面了。
-cd /data1/jailbreak_grpo/
+cd /***/jailbreak_grpo/
 
 echo "关闭所有的python进程。。" 
 pkill -u $(whoami) -f python
