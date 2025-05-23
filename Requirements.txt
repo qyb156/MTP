@@ -1,0 +1,32 @@
+# 核心深度学习框架
+torch>=2.6.0  # PyTorch，用于构建和训练神经网络模型
+transformers>=4.30.0  # Hugging Face Transformers，用于加载和使用预训练语言模型
+accelerate>=0.26.0  # 加速库，用于优化模型训练和推理性能
+# API客户端
+openai>=1.0.0  # OpenAI API客户端，用于访问GPT模型
+anthropic>=0.5.0  # Anthropic API客户端，用于访问Claude模型
+google-generativeai>=0.3.0  # Google生成式AI API客户端，用于访问Gemini模型
+ollama>=0.1.0  # Ollama客户端，用于本地运行开源模型
+
+# 文件和并发处理
+portalocker>=2.7.0  # 跨平台文件锁定，用于安全的并发文件访问
+
+# 数据处理和分析
+numpy>=1.24.0  # 数学计算库，用于数组操作和数值计算
+pandas>=2.0.0  # 数据分析库，用于CSV文件处理和数据操作
+
+# 可视化（可选，代码中有导入但未使用）
+matplotlib>=3.7.0  # 绘图库，用于可视化结果
+
+# 工具库
+tqdm>=4.65.0  # 进度条库，用于显示长时间运行任务的进度
+regex>=2023.0.0  # 增强的正则表达式库，用于文本处理
+
+# 该文件用法如下：pip install -r Requirements.txt
+
+
+#   安装依赖项peft
+pip install bitsandbytes
+pip install transformers>=4.30.0
+pip install peft
+pip install accelerate
