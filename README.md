@@ -52,72 +52,53 @@ To use this project, you need to obtain API keys for the relevant large language
 
 ## Example
 ```bash
-#!/bin/bash
-# 初始化conda
-eval "$(conda shell.bash hook)"
-conda activate jailbreak
-cd /***/jailbreak_grpo/
-
-echo "关闭所有的python进程。。" 
-pkill -u $(whoami) -f python
-sleep 2 # 添加短暂延迟，避免同时启动造成资源竞争
-ps -aux | grep python
-
-# 通用参数
-VICTIM_MODEL="claude-2"
-HOST="http://localhost:11434"
-
-num_return_sequences=6
 EPOCHS=6
 DATA_SOURCE="PAP_prompts.csv"
 MODEL_PATH="./Qwen/Qwen2.5-7B-Instruct"
 FIFTH_STAGE="true"
 
-# 定义GPU起始索引和结束索引
-START_GPU=1 # 共有八块GPU，从GPU 0开始。现在预留GPU 0给ollama程序使用，已经在配置文件中指定完毕。
-END_GPU=7   # 到GPU 7结束
+# Define GPU start index and end index
+START_GPU=1 # There are eight GPUs in total, starting from GPU 0. Now GPU 0 is reserved for the ollama program, which has been specified in the configuration file.
+END_GPU=7   # Ends at GPU 7
 
-# 提取数据源文件名（去除.csv后缀）
+# Extract data source file name (remove .csv suffix)
 DATA_SOURCE_NAME=$(basename "${DATA_SOURCE}" .csv)
 
-# 提取模型名称（从路径中提取最后一个目录名）
+# Extract model name (extract the last directory name from the path)
 MODEL_NAME=$(basename "${MODEL_PATH}")
 
-# 构建实验名称，使用对应的变量
+# Construct experiment name using the corresponding variables
 experiment_name="${VICTIM_MODEL}_${DATA_SOURCE_NAME}_${MODEL_NAME}"
 
-
-
-# 添加时间戳
+# Add timestamp
 timestamp=$(date +"%Y%m%d_%H%M%S")
 log_dir="logs/${experiment_name}_${timestamp}"
 
-# 创建日志目录
+# Create log directory
 mkdir -p ${log_dir}
 
-# 记录实验信息
-echo "实验开始时间: $(date)" > "${log_dir}/experiment_info.txt"
-echo "实验名称: ${experiment_name}" >> "${log_dir}/experiment_info.txt"
-echo "使用模型: ${VICTIM_MODEL}" >> "${log_dir}/experiment_info.txt"
-echo "GPU范围: ${START_GPU}-${END_GPU}" >> "${log_dir}/experiment_info.txt"
+# Record experiment information
+echo "Experiment start time: $(date)" > "${log_dir}/experiment_info.txt"
+echo "Experiment name: ${experiment_name}" >> "${log_dir}/experiment_info.txt"
+echo "Using model: ${VICTIM_MODEL}" >> "${log_dir}/experiment_info.txt"
+echo "GPU range: ${START_GPU}-${END_GPU}" >> "${log_dir}/experiment_info.txt"
 
-
-# 检查必要的结果文件是否存在
+# Check if necessary result files exist
 result_dir="./RESULTS_${DATA_SOURCE_NAME}/victim_model_${VICTIM_MODEL}_qwen0.5b"
-# 首先是强制解锁json文件，有可能程序被强制终止以后，在json中大量的条目被锁定了，状态被设置为 了processing。我们需要将这些条目解锁。
-# 这个命令会将所有的条目都解锁。
+# First, forcibly unlock the json file. It is possible that after the program is forcefully terminated, many entries in the json are locked with their status set to processing. We need to unlock these entries.
+# This command will unlock all entries.
 python unlockJsonItems.py --result_dir ${result_dir} > unlock.log 2>&1 & 
   
-# 运行函数
+# Run function
 run_experiment() {
     local gpu_id=$1
-    # GPU ID现在是从0开始，直接用作CUDA设备ID
+    # GPU ID now starts from 0 and is directly used as the CUDA device ID
     local cuda_device=${gpu_id}
     
-    # 修改日志文件名格式，使用对应的变量
+    # Modify log file name format using corresponding variables
     local log_file="${log_dir}/output_gpu${gpu_id}_${VICTIM_MODEL}-${DATA_SOURCE_NAME}_${MODEL_NAME}-${gpu_id}.log"
     
-    echo "启动 GPU ${gpu_id} 的实验 (CUDA设备: ${cuda_device})..."
+    echo "Starting experiment for GPU ${gpu_id} (CUDA device: ${cuda_device})..."
     CUDA_VISIBLE_DEVICES=${cuda_device} nohup python grpoV13.py \
         --index ${gpu_id} \
         --victim_model "${VICTIM_MODEL}" \
@@ -129,27 +110,28 @@ run_experiment() {
         --model_name "${MODEL_PATH}" \
         > "${log_file}" 2>&1 &    
      
-    echo "GPU ${gpu_id} 实验已启动，日志文件: ${log_file}"
+    echo "Experiment for GPU ${gpu_id} has started, log file: ${log_file}"
 }
 
-# 启动指定范围的GPU实验
+# Start GPU experiment in the specified range
 for i in $(seq ${START_GPU} ${END_GPU}); do
     run_experiment $i
-    sleep 0.1  # 添加短暂延迟，避免同时启动造成资源竞争
+    sleep 0.1  # Add a short delay to avoid resource competition from simultaneous starts
 done
 
-echo "所有实验已启动，日志文件保存在: ${log_dir}"
-echo "使用以下命令查看各GPU运行状态："
+echo "All experiments have started, log files are stored in: ${log_dir}"
+echo "Use the following commands to check the running status of each GPU:"
 for i in $(seq ${START_GPU} ${END_GPU}); do
     echo "GPU ${i}: tail -f ${log_dir}/output_gpu${i}_${VICTIM_MODEL}-${DATA_SOURCE_NAME}_${MODEL_NAME}-${i}.log"
 done
 
-# 显示正在运行的进程
+# Display running processes
 sleep 2
-echo "所有程序已启动，查看各GPU上运行的进程："
+echo "All programs have started, view the processes running on each GPU:"
 nvidia-smi
-sleep 2 # 添加短暂延迟，避免同时启动造成资源竞争
+sleep 2 # Add a short delay to avoid resource competition from simultaneous starts
 ps -aux | grep python
+```
 
 
 
@@ -163,4 +145,3 @@ If you want to contribute to this project, please follow these steps:
 
 ## License
 This project is licensed under the [MIT License]. See the `LICENSE` file for more details.
-解释
