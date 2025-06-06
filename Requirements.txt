@@ -1,31 +1,31 @@
-# 核心深度学习框架
-torch>=2.6.0  # PyTorch，用于构建和训练神经网络模型
-transformers>=4.30.0  # Hugging Face Transformers，用于加载和使用预训练语言模型
-accelerate>=0.26.0  # 加速库，用于优化模型训练和推理性能
-# API客户端
-openai>=1.0.0  # OpenAI API客户端，用于访问GPT模型
-anthropic>=0.5.0  # Anthropic API客户端，用于访问Claude模型
-google-generativeai>=0.3.0  # Google生成式AI API客户端，用于访问Gemini模型
-ollama>=0.1.0  # Ollama客户端，用于本地运行开源模型
+# Core Deep Learning Frameworks
+torch>=2.6.0  # PyTorch, used for building and training neural network models
+transformers>=4.30.0  # Hugging Face Transformers, used for loading and utilizing pre-trained language models
+accelerate>=0.26.0  # Acceleration library, used to optimize model training and inference performance
 
-# 文件和并发处理
-portalocker>=2.7.0  # 跨平台文件锁定，用于安全的并发文件访问
+# API Clients
+openai>=1.0.0  # OpenAI API client, used for accessing GPT models
+anthropic>=0.5.0  # Anthropic API client, used for accessing Claude models
+google-generativeai>=0.3.0  # Google Generative AI API client, used for accessing Gemini models
+ollama>=0.1.0  # Ollama client, used for locally running open-source models
 
-# 数据处理和分析
-numpy>=1.24.0  # 数学计算库，用于数组操作和数值计算
-pandas>=2.0.0  # 数据分析库，用于CSV文件处理和数据操作
+# File and Concurrency Handling
+portalocker>=2.7.0  # Cross-platform file locking, used for safe concurrent file access
 
-# 可视化（可选，代码中有导入但未使用）
-matplotlib>=3.7.0  # 绘图库，用于可视化结果
+# Data Processing and Analysis
+numpy>=1.24.0  # Math computation library, used for array operations and numerical calculations
+pandas>=2.0.0  # Data analysis library, used for CSV file processing and data manipulation
 
-# 工具库
-tqdm>=4.65.0  # 进度条库，用于显示长时间运行任务的进度
-regex>=2023.0.0  # 增强的正则表达式库，用于文本处理
+# Visualization (Optional, imported but not used in the code)
+matplotlib>=3.7.0  # Plotting library, used for visualizing results
 
-# 该文件用法如下：pip install -r Requirements.txt
+# Utility Libraries
+tqdm>=4.65.0  # Progress bar library, used for displaying progress of long-running tasks
+regex>=2023.0.0  # Enhanced regular expression library, used for text processing
 
+# Usage of this file: pip install -r Requirements.txt
 
-#   安装依赖项peft
+# Install peft dependencies
 pip install bitsandbytes
 pip install transformers>=4.30.0
 pip install peft
