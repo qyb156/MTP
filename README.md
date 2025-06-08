@@ -1,4 +1,4 @@
-This is the repository that contains the source code for MTP. 
+This is the repository that contains the source code for MTP for the paper 'Multi-Turn Persuasion Attack for Jailbreaking Large Language Models'. 
 
 ## Project Structure
 
