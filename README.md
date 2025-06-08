@@ -8,6 +8,12 @@ This project mainly contains the following Python files:
 --'agentReward.py' is used to calculate the rewards for the large language model;  
 --'AgentVictimLLM_Defense.py' is used to obtain feedback from the victim model.
 
+## Data Structure
+
+This project mainly contains the following outcomes of our jailbreak attack experiments:
+
+--'RESULTS_*******' All folders beginning with "RESULTS" contain the outcomes of our jailbreak attack experiments. To facilitate reproducibility for researchers, we have shared most of our experimental data. However, we have temporarily withheld results for commercial models like GPT-4 and Claude due to concerns that malicious actors might use this data to train adversarial attack models. Nevertheless, to demonstrate the effectiveness of our method, we have specifically shared the file "RESULTS_PAP_prompts_defense_constitutional_classifer," which contains results from attacking the latest commercial model Claude 3.5 Haiku using our approach with the Advbench dataset. This provides sufficient evidence of our method's capabilities while maintaining responsible disclosure practices.
+
 ## Usage
 
 ### 1. Clone the project
