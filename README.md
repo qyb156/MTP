@@ -5,7 +5,7 @@ This is the repository that contains the source code of MTP for the paper 'Multi
 This project mainly contains the following Python files:
 
 --'main.py' is the main program file. This Python file implements a reinforcement learning-based jailbreak attack method for large language models. The code orchestrates a multi-phase attack process that generates adversarial prompts to bypass safety measures in victim models. It utilizes a reward mechanism to evaluate attack effectiveness, maintains attack progress through JSON file tracking with cross-platform file locking, and implements a randomized task selection strategy to prevent processing bottlenecks. The system tests various victim models with different defense strategies, particularly focusing on defenses proposed in recent research papers about LLM safety. Due to ethical considerations regarding potential misuse, we are not sharing this training code publicly; interested developers should contact us directly for access after appropriate vetting.  
---'agentReward.py' is used to calculate the rewards for the large language model;  
+--'agentReward.py' is used to calculate the rewards for the large language model.
 --'AgentVictimLLM_Defense.py' is used to obtain feedback from the victim model.
 
 ## Data Structure
@@ -13,6 +13,9 @@ This project mainly contains the following Python files:
 This project mainly contains the following outcomes of our jailbreak attack experiments:
 
 --'RESULTS_*******' All folders beginning with "RESULTS" contain the outcomes of our jailbreak attack experiments. To facilitate reproducibility for researchers, we have shared most of our experimental data. However, we have temporarily withheld results for commercial models like GPT-4 and Claude due to concerns that malicious actors might use this data to train adversarial attack models. Nevertheless, to demonstrate the effectiveness of our method, we have specifically shared the file "RESULTS_PAP_prompts_defense_constitutional_classifer," which contains results from attacking the latest commercial model Claude 3.5 Haiku using our approach with the Advbench dataset. This provides sufficient evidence of our method's capabilities while maintaining responsible disclosure practices.
+
+--'persuasion_taxonomy.jsonl'  This repository contains a comprehensive taxonomy of persuasion techniques in JSONL format. The dataset catalogs 23 distinct persuasion strategies, each with a formal definition and practical example. Techniques range from evidence-based persuasion and logical appeals to emotional manipulation tactics like storytelling and negative emotion appeals. Each entry follows a consistent structure with three fields: the technique name, its definition, and an illustrative example (primarily using smoking cessation scenarios). This taxonomy serves as a valuable resource for researchers studying persuasion psychology, social influence mechanisms, and the development of communication analysis tools. The JSONL format makes it easily accessible for computational processing and integration into natural language understanding systems.
+
 
 ## Usage
 
