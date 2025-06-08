@@ -2,11 +2,15 @@ This is the repository that contains the source code of MTP for the paper 'Multi
 
 ## Project Structure
 
+```markdown
 This project mainly contains the following Python files:
 
---'main.py' is the main program file. This Python file implements a reinforcement learning-based jailbreak attack method for large language models. The code orchestrates a multi-phase attack process that generates adversarial prompts to bypass safety measures in victim models. It utilizes a reward mechanism to evaluate attack effectiveness, maintains attack progress through JSON file tracking with cross-platform file locking, and implements a randomized task selection strategy to prevent processing bottlenecks. The system tests various victim models with different defense strategies, particularly focusing on defenses proposed in recent research papers about LLM safety. Due to ethical considerations regarding potential misuse, we are not sharing this training code publicly; interested developers should contact us directly for access after appropriate vetting.  
---'agentReward.py' is used to calculate the rewards for the large language model.
---'AgentVictimLLM_Defense.py' is used to obtain feedback from the victim model.
+--'main.py' is the main program file. This Python file implements a **reinforcement learning-based jailbreak attack method** for large language models. The code orchestrates a **multi-phase attack process** that generates adversarial prompts to bypass safety measures in victim models. It utilizes a reward mechanism to evaluate attack effectiveness, maintains attack progress through JSON file tracking with cross-platform file locking, and implements a **randomized task selection strategy** to prevent processing bottlenecks. The system tests various victim models with different defense strategies, particularly focusing on defenses proposed in recent research papers about LLM safety. Due to ethical considerations regarding potential misuse, we are not sharing this training code publicly; interested developers should contact us directly for access after appropriate vetting.  
+
+--'agentReward.py' is used to calculate the rewards for the large language model. This file implements a **sophisticated reward function** that evaluates the effectiveness of generated persuasive prompts based on multiple criteria, including the victim model's response compliance, the subtlety of the persuasion strategy, and alignment with the attack goal. The **reward mechanism guides the reinforcement learning process** by providing feedback signals that help optimize the attack strategy across multiple turns of conversation, enabling the system to learn which persuasion techniques are most effective for different types of jailbreak attempts.
+
+--'AgentVictimLLM_Defense.py' is used to obtain feedback from the victim model. This module handles the **interaction with various target LLMs** that have different safety mechanisms implemented. It manages API calls to these models, processes their responses, and implements interfaces for **various defense strategies** being tested. The file includes implementations for several **state-of-the-art defense mechanisms** mentioned in our paper, allowing for systematic evaluation of our attack method against different protection strategies. It also handles error cases, rate limiting, and response formatting to ensure consistent evaluation across different victim models.
+```
 
 ## Data Structure
 
