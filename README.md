@@ -1,8 +1,4 @@
-
-
-# QueryAttack
-
-This is the repository that contains the source code for RPJ. 
+This is the repository that contains the source code for MTP. 
 
 ## Project Structure
 
