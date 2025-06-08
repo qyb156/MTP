@@ -24,7 +24,8 @@ This project mainly contains the following outcomes of our jailbreak attack expe
 
 
 
---'sorry_bench_202503.csv' The sorry_bench_202503.csv file contains a structured dataset designed to test AI systems' responses to inappropriate requests, featuring prompts categorized into  distinct types of harmful content, including insults, discrimination, threats, sexual harassment, defamation, self-harm promotion, violence, manipulation, and illegal activities. This benchmark appears to be intended to evaluate AI safety measures and the systems' ability to appropriately recognize, decline, and respond to potentially harmful user inputs. The name "SorryBench" suggests its purpose of assessing whether AI systems properly decline such problematic requests. ( referenced as ` the SORRY-Bench dataset’ in our paper)
+--'sorry_bench_202503.csv' The sorry_bench_202503.csv file contains a structured dataset designed to test AI systems' responses to inappropriate requests, featuring prompts categorized into  distinct types of harmful content, including insults, discrimination, threats, sexual harassment, defamation, self-harm promotion, violence, manipulation, and illegal activities. This benchmark appears to be intended to evaluate AI safety measures and the systems' ability to appropriately recognize, decline, and respond to potentially harmful user inputs. The name "SorryBench" suggests its purpose of assessing whether AI systems properly decline such problematic requests.( **referenced as `the SORRY-Bench dataset' in our paper** )
+
 ## Usage
 
 ### 1. Clone the project
